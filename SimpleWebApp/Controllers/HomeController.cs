@@ -10,12 +10,13 @@ namespace SimpleWebApp.Controllers
 
     public class HomeController : Controller
     {
-        private DashboardViewModel model;
-        private Encounter encounter;
+        private DashboardViewModel dashboard;
+        private Encounter model;
         public HomeController()
         {
-            model = DashboardViewModel.Instance;
-            encounter = new Encounter();
+            dashboard = DashboardViewModel.Instance;
+            model = new Encounter();
+            ViewData["NumberOfEncounters"] = dashboard.Encounters.Count;
         }
         public IActionResult Index()
         {
@@ -44,14 +45,14 @@ namespace SimpleWebApp.Controllers
         [HttpPost]
         public IActionResult IncrementPrayersCountBy(int number = 0)
         {
-            encounter.Actions.Add(MinistryAction.Prayer);
+            //  encounter.Actions.Add(MinistryAction.Prayer);
             return View("Index", model);
         }
 
         [HttpPost]
         public IActionResult IncrementTestimonyCountBy(int number = 0)
         {
-            model.NumberOfShares += number;
+            // model.NumberOfShares += number;
             return View("Index", model);
         }
 
@@ -59,8 +60,27 @@ namespace SimpleWebApp.Controllers
         public IActionResult IncrementGospelCountBy(int number = 0)
         {
             //Console.WriteLine()
-            model.NumberOfShares += number;
+            // model.NumberOfShares += number;
             return View("Index", model);
+        }
+
+        [HttpPost]
+        public IActionResult SaveEncounter(Encounter encounter)
+        {
+            var prayer = encounter.prayer;
+            //var prayer = Request.Form["prayerButton"];
+            //var testimony = Request.Form["testimonyButton"];
+            //var gospel = Request.Form["gospelButton"];
+
+            if (prayer)
+            {
+                ViewData["NumberOfEncounters"] = "Prayer!";
+            } else
+            {
+                ViewData["NumberOfEncounters"] = "no prayer :(";
+            }
+
+            return View("Index");
         }
 
     }

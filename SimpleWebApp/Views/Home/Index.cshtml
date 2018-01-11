@@ -1,24 +1,124 @@
 ﻿@using SimpleWebApp.Models;
-@model DashboardViewModel
+@model EncounterViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<form asp-controller="Home" asp-action="IncrementPrayersCountBy" asp-route-number="1" method="post" >
-    <button class="btn btn-default" type="submit">Prayer</button>
-</form>
+<style>
+    .checkbox input[type="checkbox"] {
+        opacity: 0;
+    }
+</style>
+<form asp-controller="Home" asp-action="SaveEncounter">
 
-<form asp-controller="Home" asp-action="IncrementTestimonyCountBy" asp-route-number="1" method="post">
-    <button class="btn btn-default" type="submit">Testimony</button>
-</form>
+    @*<div class="btn-group btn-group-lg" role="group">
+        <button type="button" name="prayerButton" value="getButtonValue(this)" onclick="ministryActionClicked(this)"
+                class="ministry-action-btn btn btn-default">Prayer</button>
+        <button type="button" name="testimonyButton" value="getButtonValue(this)" onclick="ministryActionClicked(this)"
+                class="ministry-action-btn btn btn-default">Testimony</button>
+        <button type="button" name="gospelButton" value="getButtonValue(this)" onclick="ministryActionClicked(this)"
+                class="ministry-action-btn btn btn-default">Gospel</button>
+    </div>*@
 
-<form asp-controller="Home" asp-action="IncrementGospelCountBy" asp-route-number="1" method="post">
-    <button class="btn btn-default" type="submit">Gospel</button>
-</form>
+    <div class="btn-group btn-group-lg btn-group-justified">
+        <div class="checkbox">
+            <input type="checkbox" asp-for="prayer" id="prayerButton">
+            <label onclick="ministryActionClicked(this)" class="btn btn-default"
+                   for="prayerButton">Prayer</label>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" asp-for="testimony" id="testimonyButton">
+            <label onclick="ministryActionClicked(this)" class="btn btn-default"
+                   for="testimonyButton">Testimony</label>
+        </div>
+        <div class="checkbox">
+            <input type="checkbox" asp-for="gospel" id="testimonyButton">
+            <label onclick="ministryActionClicked(this)" class="btn btn-default"
+                   for="testimonyButton">Testimony</label>
+        </div>
+    </div>
 
-    @*<form action="/Movies/Edit/7" method="post">
-
-        <a asp-controller="Home" asp-action="IncrementSharesCountBy" class="btn">I Shared!</a>
-    </form>*@
     <br />
-    <p>Shares: @Model.NumberOfShares</p>
+    <button type="submit">Save</button>
+</form>
+
+@*<div class="btn-group btn-group-lg">
+        <label class="btn btn-default">
+            <input type="button" name="options" id="option1" checked> Prayer
+        </label>
+        <label class="btn btn-default">
+            <input type="button" name="options" id="option2"> Testimony
+        </label>
+        <label class="btn btn-default">
+            <input class="btn btn-default" type="button" name="options" id="option3"> Gospel
+        </label>
+    </div>*@
+
+
+<!--@*@*<form asp-controller="Home" asp-action="SaveEncounter" method="post">*@
+
+<button id="prayerButton" class="ministry-action-btn btn btn-default">Prayer</button>
+
+@*<form asp-controller="Home" asp-action="IncrementTestimonyCountBy" asp-route-number="1" method="post">*@
+<button id="testimonyButton" class="ministry-action-btn btn btn-default">Testimony</button>
+@*</form>*@
+
+@*<form asp-controller="Home" asp-action="IncrementGospelCountBy" asp-route-number="1" method="post">*@
+<button id="gospelButton" class="ministry-action-btn btn btn-default">Gospel</button>
+@*</form>*@
+
+@*</form>*@ -->
+
+<br />
+<p
+
+    <br />
+<p>Number of Encounters: @ViewData["NumberOfEncounters"]</p>
+
+
+    </p>
+
+
+    <script>
+
+        function getButtonValue(elem) {
+            if (elem.classList.contains('active')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function ministryActionClicked(elem) {
+            if (elem.classList.contains('active')) {
+                elem.classList.remove('active');
+            } else {
+                elem.classList.add('active');
+            }
+            //if (event.id != null) {
+            //    document.querySelector(`#${id}`).addClass('active');
+
+            //    //switch (event.id) {
+            //    //    case 'prayerButton':
+            //    //        break;
+            //    //    case 'testimonyButton':
+            //    //        break;
+            //    //    case 'gospelButton':
+            //    //        break;
+
+            //    //}
+            //}
+        }
+
+        //document.querySelector('.ministry-action-btn').addEventListener('click', ministryActionClicked(elem));
+
+
+        function activateAction(id) {
+
+        }
+
+        function deactivateAction(id) {
+
+        }
+
+    </script>
