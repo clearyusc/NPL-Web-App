@@ -3,7 +3,7 @@
 namespace SimpleWebApp.Models
 {
     public enum MinistryAction { Prayer, Testimony, Gospel, Train };
-    public enum MinistryResponse { RedLight, YellowLight, GreenLight, BelieverWantsTraining, BelieverDoesNotWantTraining };
+    public enum MinistryResponse { Undefined, RedLight, YellowLight, GreenLight, BelieverWantsTraining, BelieverDoesNotWantTraining };
 
     public class Encounter
     {
@@ -11,8 +11,6 @@ namespace SimpleWebApp.Models
         public IList<MinistryAction> Actions { get; set; }
         public MinistryResponse Response { get; set; }
 
-        public bool testimony { get; set; } = false;
-        public bool prayer { get; set; } = false;
 
         public Encounter()
         {

@@ -11,49 +11,47 @@ namespace SimpleWebApp.Controllers
     public class HomeController : Controller
     {
         private DashboardViewModel dashboard;
-        private Encounter model;
         public HomeController()
         {
             dashboard = DashboardViewModel.Instance;
-            model = new Encounter();
             ViewData["NumberOfEncounters"] = dashboard.Encounters.Count;
         }
         public IActionResult Index()
         {
-            return View(model);
+            return View();
         }
 
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
 
-            return View(model);
+            return View();
         }
 
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
 
-            return View(model);
+            return View();
         }
 
         public IActionResult Error()
         {
-            return View(model);
+            return View();
         }
 
         [HttpPost]
         public IActionResult IncrementPrayersCountBy(int number = 0)
         {
             //  encounter.Actions.Add(MinistryAction.Prayer);
-            return View("Index", model);
+            return View("Index");
         }
 
         [HttpPost]
         public IActionResult IncrementTestimonyCountBy(int number = 0)
         {
             // model.NumberOfShares += number;
-            return View("Index", model);
+            return View("Index");
         }
 
         [HttpPost]
@@ -61,24 +59,26 @@ namespace SimpleWebApp.Controllers
         {
             //Console.WriteLine()
             // model.NumberOfShares += number;
-            return View("Index", model);
+            return View("Index");
         }
 
         [HttpPost]
-        public IActionResult SaveEncounter(Encounter encounter)
+        public IActionResult SaveEncounter(EncounterViewModel viewModel)
         {
-            var prayer = encounter.prayer;
-            //var prayer = Request.Form["prayerButton"];
-            //var testimony = Request.Form["testimonyButton"];
-            //var gospel = Request.Form["gospelButton"];
-
-            if (prayer)
+            var encounter = new Encounter();
+            if (viewModel != null)
             {
-                ViewData["NumberOfEncounters"] = "Prayer!";
-            } else
-            {
-                ViewData["NumberOfEncounters"] = "no prayer :(";
+                if (viewModel.gospel)
+                    encounter.Actions.Add(MinistryAction.Gospel);
+                if (viewModel.prayer)
+                    encounter.Actions.Add(MinistryAction.Prayer);
+                if (viewModel.testimony)
+                    encounter.Actions.Add(MinistryAction.Testimony);
             }
+
+            dashboard.Encounters.Add(encounter);
+
+            ViewData["NumberOfEncounters"] = encounter.Actions.Count;
 
             return View("Index");
         }
