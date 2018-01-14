@@ -21,9 +21,6 @@
         flex-direction: row;
         justify-content: center;
         align-items: baseline;
-        /*margin-left: 10px;
-        margin-right: 10px;*/
-        /*flex-wrap: wrap;*/
     }
 
     .ministry-action-btn {
@@ -82,17 +79,29 @@
     <br />
     <div class="flex-container">
         <div class="btn-group-lg" data-toggle="buttons">
-            <label class="btn btn-info">
-                <input type="radio" name="options" id="greenLight"> No to Training
+            <label class="btn btn-default">
+                <input type="radio" name="options" id="noToTraining" onchange="handleMinistryResponseChange(this)"> No to Training
             </label>
-            <label class="btn-circle btn btn-info">
-                <input type="radio" name="options" id="greenLight"> Yes to Training
+            <label class="btn-circle btn btn-default">
+                <input type="radio" name="options" id="yesToTraining" onchange="handleMinistryResponseChange(this)"> Yes to Training
             </label>
         </div>
     </div>
     <br />
-
-    <button class="btn btn-primary" type="submit">Save</button>
+    <hr />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12" style="width:100%">
+                    <input type="text" placeholder="Name">
+                    <textarea rows="5" placeholder="Notes..."></textarea>
+                </div>
+            </div>
+        </div>
+    <br />
+    <div class="flex-container">
+        @*<label class="btn-lg btn-negative" onclick="resetAllDataFields">Reset</label>*@ <!-- Todo: add reset button somehwere -->
+        <button class="btn-lg btn-primary btn-block" type="submit">Save</button>
+    </div>
 </form>
 
 
@@ -124,16 +133,6 @@
 
 @*</form>*@ -->
 
-<br />
-<p
-
-    <br />
-<p>Number of Eounters: @ViewData["NumberOfEncounters"]</p>
-
-
-    </p>
-
-
 
 <script>
 
@@ -147,6 +146,9 @@
 
     function toggleFaceIcon(elem) {
         var faceIconClasses = elem.parentNode.classList;
+        var notAFaceIcon = faceIconClasses.contains('fas') === false && faceIconClasses.contains('far') === false;
+        if (notAFaceIcon)
+            return;
 
         if (elem.checked) {
             faceIconClasses.remove('fas');
@@ -157,11 +159,13 @@
         }
     }
 
+    var checkboxes = document.querySelectorAll('input[type=radio]');
+
     function handleMinistryResponseChange(elem) {
         toggleFaceIcon(elem);
 
-        var checkboxes = document.querySelectorAll('input[type=radio]');
         var unchecked = [];
+
         for (var k = 0; k < checkboxes.length; k++) {
             if (checkboxes[k].checked === false)
                 unchecked.push(checkboxes[k]);
@@ -170,8 +174,6 @@
         for (var i = 0; i < unchecked.length; i++) {
             toggleFaceIcon(unchecked[i]);
         }
-
-        //checkboxes = document.querySelectorAll('input[type=radio]:checked');
     }
 
     // todo: implement this to turn the face inside out when it gets clicked
