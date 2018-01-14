@@ -28,36 +28,25 @@
     }
 </style>
 <form asp-controller="Home" asp-action="SaveEncounter">
-
-    @*<div class="btn-group btn-group-lg" role="group">
-            <button type="button" name="prayerButton" value="getButtonValue(this)" onclick="ministryActionClicked(this)"
-                    class="ministry-action-btn btn btn-default">Prayer</button>
-            <button type="button" name="testimonyButton" value="getButtonValue(this)" onclick="ministryActionClicked(this)"
-                    class="ministry-action-btn btn btn-default">Testimony</button>
-            <button type="button" name="gospelButton" value="getButtonValue(this)" onclick="ministryActionClicked(this)"
-                    class="ministry-action-btn btn btn-default">Gospel</button>
-        </div>*@
     <br />
     <br />
     <div class="flex-container-actions">
 
-        @*<div class="btn-group btn-group-lg btn-group-justified">*@
         <div class="checkbox">
-            <input type="checkbox" asp-for="Prayer" id="prayerButton">
-            <label onclick="ministryActionClicked(this)" class="ministry-action-btn btn btn-default"
+            <input asp-for="Prayer">
+            <label onclick="ministryActionClicked(this)" id="prayerButton" class="ministry-action-btn btn btn-default"
                    for="prayerButton">Prayer</label>
         </div>
         <div class="checkbox">
-            <input type="checkbox" asp-for="Testimony" id="testimonyButton">
-            <label onclick="ministryActionClicked(this)" class="ministry-action-btn btn btn-default"
+            <input asp-for="Testimony">
+            <label onclick="ministryActionClicked(this)" id="testimonyButton" class="ministry-action-btn btn btn-default"
                    for="testimonyButton">Testimony</label>
         </div>
         <div class="checkbox">
-            <input type="checkbox" asp-for="Gospel" id="testimonyButton">
-            <label onclick="ministryActionClicked(this)" class="ministry-action-btn btn btn-default"
-                   for="testimonyButton">Gospel</label>
+            <input asp-for="Gospel">
+            <label onclick="ministryActionClicked(this)" id="gospelButton" class="ministry-action-btn btn btn-default"
+                   for="gospelButton">Gospel</label>
         </div>
-        @*</div>*@
     </div>
 
 
@@ -65,13 +54,13 @@
     <div class="flex-container">
         <div class="btn-group-lg" data-toggle="buttons">
             <label class="ryg-response btn btn-danger">
-                <i class="fas fa-2x fa-frown"><input type="radio" asp-for="@Model.Response" value="@MinistryResponse.RedLight" name="options" id="redLight" onchange="handleMinistryResponseChange(this)"></i>
+                <i class="fas fa-2x fa-frown"><input type="radio" asp-for="Response" value="@MinistryResponse.RedLight" onchange="handleMinistryResponseChange(this)"></i>
             </label>
             <label class="ryg-response btn btn-warning">
-                <i class="fas fa-2x fa-meh"><input type="radio" asp-for="@Model.Response" value="@MinistryResponse.YellowLight" name="options" id="yellowLight" onchange="handleMinistryResponseChange(this)"></i>
+                <i class="fas fa-2x fa-meh"><input type="radio" asp-for="Response" value="@MinistryResponse.YellowLight" onchange="handleMinistryResponseChange(this)"></i>
             </label>
             <label class="ryg-response btn btn-success">
-                <i class="fas fa-2x fa-smile"><input type="radio" asp-for="@Model.Response" value="@MinistryResponse.GreenLight" name="options" id="greenLight" onchange="handleMinistryResponseChange(this)"></i>
+                <i class="fas fa-2x fa-smile"><input type="radio" asp-for="Response" value="@MinistryResponse.GreenLight" onchange="handleMinistryResponseChange(this)"></i>
             </label>
         </div>
     </div>
@@ -80,58 +69,30 @@
     <div class="flex-container">
         <div class="btn-group-lg" data-toggle="buttons">
             <label class="btn btn-default">
-                <input type="radio" name="options" id="noToTraining" onchange="handleMinistryResponseChange(this)"> No to Training
+                <input type="radio" asp-for="Response" value="@MinistryResponse.BelieverDoesNotWantTraining" onchange="handleMinistryResponseChange(this)"> No to Training
             </label>
             <label class="btn btn-default">
-                <input type="radio" name="options" id="yesToTraining" onchange="handleMinistryResponseChange(this)"> Yes to Training
+                <input type="radio" asp-for="Response" value="@MinistryResponse.BelieverWantsTraining" onchange="handleMinistryResponseChange(this)"> Yes to Training
             </label>
         </div>
     </div>
     <br />
     <hr />
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12" style="width:100%">
-                    <input type="text" placeholder="Name" asp-for="NameOfPerson">
-                    <textarea rows="5" placeholder="Notes..." asp-for="Notes"></textarea>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12" style="width:100%">
+                <input type="text" placeholder="Name" asp-for="NameOfPerson">
+                <textarea rows="5" placeholder="Notes..." asp-for="Notes"></textarea>
             </div>
         </div>
+    </div>
     <br />
     <div class="flex-container">
         @*<label class="btn-lg btn-negative" onclick="resetAllDataFields">Reset</label>*@ <!-- Todo: add reset button somehwere -->
-        <button class="btn-lg btn-primary btn-block" type="submit">Save</button>
+        <button class="btn-lg btn-success btn-block" type="submit">Save</button>
     </div>
 </form>
 
-
-
-@*<div class="btn-group btn-group-lg">
-        <label class="btn btn-default">
-            <input type="button" name="options" id="option1" checked> Prayer
-        </label>
-        <label class="btn btn-default">
-            <input type="button" name="options" id="option2"> Testimony
-        </label>
-        <label class="btn btn-default">
-            <input class="btn btn-default" type="button" name="options" id="option3"> Gospel
-        </label>
-    </div>*@
-
-
-<!--@*@*<form asp-controller="Home" asp-action="SaveEncounter" method="post">*@
-
-<button id="prayerButton" class="ministry-action-btn btn btn-default">Prayer</button>
-
-@*<form asp-controller="Home" asp-action="IncrementTestimonyCountBy" asp-route-number="1" method="post">*@
-<button id="testimonyButton" class="ministry-action-btn btn btn-default">Testimony</button>
-@*</form>*@
-
-@*<form asp-controller="Home" asp-action="IncrementGospelCountBy" asp-route-number="1" method="post">*@
-<button id="gospelButton" class="ministry-action-btn btn btn-default">Gospel</button>
-@*</form>*@
-
-@*</form>*@ -->
 
 
 <script>
@@ -185,23 +146,48 @@
     //}
 
     function ministryActionClicked(elem) {
+        var checkbox = elem.parentNode.children[0];
         if (elem.classList.contains('active')) {
             elem.classList.remove('active');
+            checkbox.setAttribute("checked", "false");
+            checkbox.val = false;
+            checkbox.checked = false;
+            switch (elem.id) {
+                case 'prayerButton':
+                    break;
+                case 'testimonyButton':
+                    elem.classList.remove('btn-info');
+                    elem.classList.add('btn-default');
+                    break;
+                case 'gospelButton':
+                    elem.classList.remove('btn-primary');
+                    elem.classList.add('btn-default');
+                    break;
+
+            }
         } else {
             elem.classList.add('active');
+            checkbox.setAttribute("checked", "true");
+            checkbox.val = true;
+            checkbox.checked = true;
+            switch (elem.id) {
+                case 'prayerButton':
+                    break;
+                case 'testimonyButton':
+                    elem.classList.remove('btn-default');
+                    elem.classList.add('btn-info');
+                    break;
+                case 'gospelButton':
+                    elem.classList.remove('btn-default');
+                    elem.classList.add('btn-primary');
+                    break;
+
+            }
         }
         //if (event.id != null) {
         //    document.querySelector(`#${id}`).addClass('active');
 
-        //    //switch (event.id) {
-        //    //    case 'prayerButton':
-        //    //        break;
-        //    //    case 'testimonyButton':
-        //    //        break;
-        //    //    case 'gospelButton':
-        //    //        break;
 
-        //    //}
         //}
     }
 

@@ -5,6 +5,15 @@
 }
 
 <style>
+    .badge-prayer {
+        background-color: #e6e6e6 !important;
+    }
+    .badge-testimony {
+        background-color: #269abc !important;
+    }
+    .badge-gospel {
+        background-color: #204d74 !important;
+    }
     .badge-red-lights {
         background-color: #d9534f !important;
     }
@@ -17,7 +26,9 @@
 </style>
 <div class="content-padded">
     <h1>Dashboard Summary</h1>
-    <span class="badge badge-primary">17</span>
+    <span class="badge badge-prayer">40</span>
+    <span class="badge badge-testimony">34</span>
+    <span class="badge badge-gospel">17</span>
     <span class="badge badge-red-lights">14</span>
     <span class="badge badge-yellow-lights">2</span>
     <span class="badge badge-green-lights">1</span>
@@ -25,7 +36,7 @@
     <h1>Encounters List</h1>
     <h3>@Model.Encounters[0].Person.FirstName</h3>
     <ul>
-        <li>@Model.Encounters[0].Actions[0]</li>
+        <li>@*@Model.Encounters[0].Actions[0]*@</li>
         <li>@Model.Encounters[0].Response</li>
         <li>@Model.Encounters[0].Notes</li>
         <li>@Model.Encounters[0].Timestamp</li>

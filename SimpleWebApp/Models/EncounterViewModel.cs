@@ -7,9 +7,9 @@ namespace SimpleWebApp.Models
 {
     public class EncounterViewModel
     {
-        public bool Testimony { get; set; } = false;
-        public bool Prayer { get; set; } = false;
-        public bool Gospel { get; set; } = false;
+        public bool Testimony { get; set; }
+        public bool Prayer { get; set; }
+        public bool Gospel { get; set; }
         public MinistryResponse Response { get; set; }
         public string NameOfPerson { get; set; }
         public string Notes { get; set; }

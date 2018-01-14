@@ -62,7 +62,7 @@ namespace SimpleWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveEncounter(EncounterViewModel viewModel)
+        public IActionResult SaveEncounter([FromForm] EncounterViewModel viewModel)
         {
             var encounter = new Encounter();
             if (viewModel != null)

@@ -10,7 +10,7 @@ namespace SimpleWebApp.Models
     {
         public Person Person { get; set; }
         public IList<MinistryAction> Actions { get; set; }
-        public MinistryResponse Response { get; set; }
+        public MinistryResponse Response { get; set; } = MinistryResponse.Undefined;
         public string Notes { get; set; }
         public DateTime Timestamp { get; set; }
 
