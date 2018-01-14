@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleWebApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,8 +10,7 @@ namespace SimpleWebApp.Models
     {
 
         public IList<Encounter> Encounters { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public Person User { get; set; }
 
         private static DashboardViewModel instance;
         private DashboardViewModel()

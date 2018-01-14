@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SimpleWebApp.Models
 {
@@ -10,11 +11,13 @@ namespace SimpleWebApp.Models
         public Person Person { get; set; }
         public IList<MinistryAction> Actions { get; set; }
         public MinistryResponse Response { get; set; }
-
+        public string Notes { get; set; }
+        public DateTime Timestamp { get; set; }
 
         public Encounter()
         {
             Actions = new List<MinistryAction>();
+            Person = new Person();
         }
     }
 }

@@ -14,7 +14,6 @@ namespace SimpleWebApp.Controllers
         public HomeController()
         {
             dashboard = DashboardViewModel.Instance;
-            ViewData["NumberOfEncounters"] = dashboard.Encounters.Count;
         }
         public IActionResult Index()
         {
@@ -68,13 +67,18 @@ namespace SimpleWebApp.Controllers
             var encounter = new Encounter();
             if (viewModel != null)
             {
-                if (viewModel.gospel)
+                if (viewModel.Gospel)
                     encounter.Actions.Add(MinistryAction.Gospel);
-                if (viewModel.prayer)
+                if (viewModel.Prayer)
                     encounter.Actions.Add(MinistryAction.Prayer);
-                if (viewModel.testimony)
+                if (viewModel.Testimony)
                     encounter.Actions.Add(MinistryAction.Testimony);
             }
+
+            encounter.Response = viewModel.Response;
+            encounter.Person.FirstName = viewModel.NameOfPerson;
+            encounter.Notes = viewModel.Notes;
+            encounter.Timestamp = DateTime.Now;
 
             dashboard.Encounters.Add(encounter);
 

@@ -1,0 +1,35 @@
+﻿@using SimpleWebApp.Models;
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<style>
+    .badge-red-lights {
+        background-color: #d9534f !important;
+    }
+    .badge-yellow-lights {
+        background-color: #f0ad4e !important;
+    }
+    .badge-green-lights {
+        background-color: #5cb85c !important;
+    }
+</style>
+<div class="content-padded">
+    <h1>Dashboard Summary</h1>
+    <span class="badge badge-primary">17</span>
+    <span class="badge badge-red-lights">14</span>
+    <span class="badge badge-yellow-lights">2</span>
+    <span class="badge badge-green-lights">1</span>
+
+    <h1>Encounters List</h1>
+    <h3>@Model.Encounters[0].Person.FirstName</h3>
+    <ul>
+        <li>@Model.Encounters[0].Actions[0]</li>
+        <li>@Model.Encounters[0].Response</li>
+        <li>@Model.Encounters[0].Notes</li>
+        <li>@Model.Encounters[0].Timestamp</li>
+
+    </ul>
+
+</div>

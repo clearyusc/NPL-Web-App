@@ -43,17 +43,17 @@
 
         @*<div class="btn-group btn-group-lg btn-group-justified">*@
         <div class="checkbox">
-            <input type="checkbox" asp-for="prayer" id="prayerButton">
+            <input type="checkbox" asp-for="Prayer" id="prayerButton">
             <label onclick="ministryActionClicked(this)" class="ministry-action-btn btn btn-default"
                    for="prayerButton">Prayer</label>
         </div>
         <div class="checkbox">
-            <input type="checkbox" asp-for="testimony" id="testimonyButton">
+            <input type="checkbox" asp-for="Testimony" id="testimonyButton">
             <label onclick="ministryActionClicked(this)" class="ministry-action-btn btn btn-default"
                    for="testimonyButton">Testimony</label>
         </div>
         <div class="checkbox">
-            <input type="checkbox" asp-for="gospel" id="testimonyButton">
+            <input type="checkbox" asp-for="Gospel" id="testimonyButton">
             <label onclick="ministryActionClicked(this)" class="ministry-action-btn btn btn-default"
                    for="testimonyButton">Gospel</label>
         </div>
@@ -65,13 +65,13 @@
     <div class="flex-container">
         <div class="btn-group-lg" data-toggle="buttons">
             <label class="ryg-response btn btn-danger">
-                <i class="fas fa-2x fa-frown"><input type="radio" name="options" id="redLight" onchange="handleMinistryResponseChange(this)"></i>
+                <i class="fas fa-2x fa-frown"><input type="radio" asp-for="@Model.Response" value="@MinistryResponse.RedLight" name="options" id="redLight" onchange="handleMinistryResponseChange(this)"></i>
             </label>
             <label class="ryg-response btn btn-warning">
-                <i class="fas fa-2x fa-meh"><input type="radio" name="options" id="yellowLight" onchange="handleMinistryResponseChange(this)"></i>
+                <i class="fas fa-2x fa-meh"><input type="radio" asp-for="@Model.Response" value="@MinistryResponse.YellowLight" name="options" id="yellowLight" onchange="handleMinistryResponseChange(this)"></i>
             </label>
             <label class="ryg-response btn btn-success">
-                <i class="fas fa-2x fa-smile"><input type="radio" name="options" id="greenLight" onchange="handleMinistryResponseChange(this)"></i>
+                <i class="fas fa-2x fa-smile"><input type="radio" asp-for="@Model.Response" value="@MinistryResponse.GreenLight" name="options" id="greenLight" onchange="handleMinistryResponseChange(this)"></i>
             </label>
         </div>
     </div>
@@ -82,7 +82,7 @@
             <label class="btn btn-default">
                 <input type="radio" name="options" id="noToTraining" onchange="handleMinistryResponseChange(this)"> No to Training
             </label>
-            <label class="btn-circle btn btn-default">
+            <label class="btn btn-default">
                 <input type="radio" name="options" id="yesToTraining" onchange="handleMinistryResponseChange(this)"> Yes to Training
             </label>
         </div>
@@ -92,8 +92,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12" style="width:100%">
-                    <input type="text" placeholder="Name">
-                    <textarea rows="5" placeholder="Notes..."></textarea>
+                    <input type="text" placeholder="Name" asp-for="NameOfPerson">
+                    <textarea rows="5" placeholder="Notes..." asp-for="Notes"></textarea>
                 </div>
             </div>
         </div>
