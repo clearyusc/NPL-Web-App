@@ -12,11 +12,11 @@ namespace SimpleWebApp.Controllers
 {
     public class DashboardController : Controller
     {
-        private DashboardViewModel dashboard;
+        private UserData dashboard;
         private DashboardService service;
         public DashboardController()
         {
-            dashboard = DashboardViewModel.Instance;
+            dashboard = UserData.Instance;
         }
         // GET: /<controller>/
         public IActionResult Index()

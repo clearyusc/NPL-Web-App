@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace SimpleWebApp.Models
 {
-    public class DashboardViewModel
+    public class UserData
     {
 
         public IList<Encounter> Encounters { get; set; }
         public Person User { get; set; }
 
-        private static DashboardViewModel instance;
-        private DashboardViewModel()
+        private static UserData instance;
+        private UserData()
         {
             Encounters = new List<Encounter>();
         }
 
-        public static DashboardViewModel Instance
+        public static UserData Instance
         { 
             get
             {
                 if (instance == null)
                 {
-                    instance = new DashboardViewModel();
+                    instance = new UserData();
                 }
                 return instance;
             }

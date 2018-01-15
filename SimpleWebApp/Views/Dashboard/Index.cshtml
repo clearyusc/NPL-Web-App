@@ -1,5 +1,5 @@
 ﻿@using SimpleWebApp.Models;
-@model DashboardViewModel
+@model UserData
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -36,7 +36,7 @@
     <h1>Encounters List</h1>
     <h3>@Model.Encounters[0].Person.FirstName</h3>
     <ul>
-        <li>@*@Model.Encounters[0].Actions[0]*@</li>
+        <li>@Model.Encounters[0].Actions[0]</li>
         <li>@Model.Encounters[0].Response</li>
         <li>@Model.Encounters[0].Notes</li>
         <li>@Model.Encounters[0].Timestamp</li>

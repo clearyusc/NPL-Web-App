@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SimpleWebApp.Context;
 
 namespace SimpleWebApp
 {
@@ -29,6 +31,21 @@ namespace SimpleWebApp
         {
             // Add framework services.
             services.AddMvc();
+
+            // Use SQL Database if in Azure, otherwise, use SQLLite
+            //if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
+            //if (true)
+            //    services.AddDbContext<DotNetCoreSqlDbContext>(options =>
+            //            options.UseSqlServer(Configuration.GetConnectionString("DefaultProductionConnection")));
+            //else
+            //    services.AddDbContext<DotNetCoreSqlDbContext>(options =>
+            //            options.UseSqlite("Data Source=MvcMovie.db"));
+
+            //// Automatically perform database migration
+            //services.BuildServiceProvider().GetService<DotNetCoreSqlDbContext>().Database.Migrate();
+
+            //services.AddDbContext<DefaultContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

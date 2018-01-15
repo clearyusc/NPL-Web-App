@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SimpleWebApp.Models;
 
@@ -10,10 +7,10 @@ namespace SimpleWebApp.Controllers
 
     public class HomeController : Controller
     {
-        private DashboardViewModel dashboard;
+        private UserData dashboard;
         public HomeController()
         {
-            dashboard = DashboardViewModel.Instance;
+            dashboard = UserData.Instance;
         }
         public IActionResult Index()
         {
