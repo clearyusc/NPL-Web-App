@@ -6,14 +6,18 @@ namespace SimpleWebApp.Context
 {
     public class DefaultContext : DbContext
     {
-        public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
+        public DefaultContext(DbContextOptions options) : base(options)
         {
 
         }
 
-        public DbSet<IUserData> Users { get; set; }
-        public DbSet<IEncounter> Encounters { get; set; }
+        public DbSet<UserData> Users { get; set; }
+        public DbSet<Encounter> Encounters { get; set; }
         public DbSet<Person> Person { get; set; }
+        public DbSet<MinistryAction> MinistryActions { get; set; }
+
+
+        //public DbSet<MinistryAction> MinistryActions { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

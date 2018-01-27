@@ -40,9 +40,9 @@ namespace SimpleWebApp
             //todo: uncomment the service injection below:
             //services.AddDbContext<DefaultContext>(
             //    options => options.UseSqlServer(_config.GetConnectionString("DefaultDevelopmentConnection")));
-            //services.AddDbContext<DefaultContext>(ops => ops.UseInMemoryDatabase("Users"));
+            services.AddDbContext<DefaultContext>(ops => ops.UseInMemoryDatabase("UserData"));
 
-            services.AddScoped<IUserData, SqlUserData>();
+            //services.AddScoped<IUserData, SqlUserData>();
             
             
             // Use SQL Database if in Azure, otherwise, use SQLLite

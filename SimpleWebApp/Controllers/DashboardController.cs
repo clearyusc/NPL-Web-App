@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SimpleWebApp.Context;
 using SimpleWebApp.Models;
 using SimpleWebApp.Services;
 
@@ -10,18 +11,21 @@ using SimpleWebApp.Services;
 
 namespace SimpleWebApp.Controllers
 {
-    public class DashboardController : Controller
+    public class DashboardController : InjectedController
     {
         private UserData dashboard;
         private DashboardService service;
-        public DashboardController()
+        public DashboardController(DefaultContext context) : base(context)
         {
             dashboard = UserData.Instance;
         }
         // GET: /<controller>/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // todo: refactor stuff here, add calls to the service to calculate totals, etc.
+            var encounters = await db.Encounters.ToAsyncEnumerable().ToList();
+            dashboard.Encounters = encounters;
+
             return View(dashboard);
         }
     }

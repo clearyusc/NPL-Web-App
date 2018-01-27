@@ -8,8 +8,9 @@ namespace SimpleWebApp.Models
 {
     public interface IUserData
     {
-        IList<IEncounter> Encounters { get; }
-        IPerson User { get; set; }
+        Guid Id { get; set; }
+        IList<Encounter> Encounters { get; }
+        Person User { get; set; }
 
         void AddEncounter(IEncounter encounter);
         IEncounter GetEncounter(Guid id);
@@ -18,13 +19,14 @@ namespace SimpleWebApp.Models
 
     public class UserData : IUserData
     {
-        public IList<IEncounter> Encounters { get; }
-        public IPerson User { get; set; }
+        public Guid Id { get; set; }
+        public IList<Encounter> Encounters { get; set;  }
+        public Person User { get; set; }
 
         private static UserData instance;
         private UserData()
         {
-            Encounters = new List<IEncounter>();
+            Encounters = new List<Encounter>();
         }
 
         public static UserData Instance

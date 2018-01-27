@@ -1,33 +1,22 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SimpleWebApp.Context;
 using SimpleWebApp.Models;
+using System.Threading.Tasks;
 
 namespace SimpleWebApp.Controllers
 {
 
-    public class HomeController : Controller
+    public class HomeController : InjectedController
     {
         private UserData dashboard;
-        public HomeController()
+        public HomeController(DefaultContext context) : base(context)
         {
             dashboard = UserData.Instance;
         }
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
         }
 
@@ -39,7 +28,9 @@ namespace SimpleWebApp.Controllers
         [HttpPost]
         public IActionResult IncrementPrayersCountBy(int number = 0)
         {
-            //  encounter.Actions.Add(MinistryAction.Prayer);
+
+             //  encounter.Actions.Add(MinistryAction.Prayer);
+
             return View("Index");
         }
 
@@ -59,17 +50,22 @@ namespace SimpleWebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult SaveEncounter([FromForm] EncounterViewModel viewModel)
+        public async Task<IActionResult> SaveEncounter([FromForm] EncounterViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var encounter = new Encounter();
             if (viewModel != null)
             {
                 if (viewModel.Gospel)
-                    encounter.Actions.Add(MinistryAction.Gospel);
+                    encounter.Actions.Add(new MinistryAction(3));
                 if (viewModel.Prayer)
-                    encounter.Actions.Add(MinistryAction.Prayer);
+                    encounter.Actions.Add(new MinistryAction(2));
                 if (viewModel.Testimony)
-                    encounter.Actions.Add(MinistryAction.Testimony);
+                    encounter.Actions.Add(new MinistryAction(1));
             }
 
             encounter.Response = viewModel.Response;
@@ -77,7 +73,13 @@ namespace SimpleWebApp.Controllers
             encounter.Notes = viewModel.Notes;
             encounter.Timestamp = DateTime.Now;
 
-            dashboard.Encounters.Add(encounter);
+            await db.Encounters.AddAsync(encounter);
+            encounter.Actions.ForEach(a => db.MinistryActions.AddAsync(a));
+
+            //await db.AddAsync(encounter);
+            await db.SaveChangesAsync();
+
+            //dashboard.Encounters.Add(encounter);
 
             ViewData["NumberOfEncounters"] = encounter.Actions.Count;
 
