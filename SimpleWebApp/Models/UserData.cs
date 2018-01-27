@@ -6,16 +6,25 @@ using System.Threading.Tasks;
 
 namespace SimpleWebApp.Models
 {
-    public class UserData
+    public interface IUserData
     {
+        IList<IEncounter> Encounters { get; }
+        IPerson User { get; set; }
 
-        public IList<Encounter> Encounters { get; set; }
-        public Person User { get; set; }
+        void AddEncounter(IEncounter encounter);
+        IEncounter GetEncounter(Guid id);
+        void DeleteEncounter(Guid id);
+    }
+
+    public class UserData : IUserData
+    {
+        public IList<IEncounter> Encounters { get; }
+        public IPerson User { get; set; }
 
         private static UserData instance;
         private UserData()
         {
-            Encounters = new List<Encounter>();
+            Encounters = new List<IEncounter>();
         }
 
         public static UserData Instance
@@ -29,6 +38,20 @@ namespace SimpleWebApp.Models
                 return instance;
             }
         }
-        
+
+        public void AddEncounter(IEncounter encounter)
+        {
+            ((List<IEncounter>)Encounters).Add(encounter);
+        }
+
+        public IEncounter GetEncounter(Guid id)
+        {
+            return Encounters.First(e => e.Id == id);
+        }
+
+        public void DeleteEncounter(Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
