@@ -1,0 +1,17 @@
+﻿@using SimpleWebApp.Repository;
+@model Encounter
+
+@{ // Todo: Move this into the Controller? or a viewmodel?
+    string actionString = "";
+    foreach (var action in Model.MinistryActions)
+    {
+        actionString += " " + (action.ToString());
+    }
+}
+<h4>@Model.PersonEncountered.FirstName</h4>
+<ul>
+    <li>@actionString</li>
+    <li>@Model.MinistryResponse</li>
+    <li>@Model.Notes</li>
+    <li>@Model.Timestamp</li>
+</ul>

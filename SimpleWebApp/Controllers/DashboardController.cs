@@ -29,14 +29,14 @@ namespace SimpleWebApp.Controllers
             ViewData["GospelCount"] = query.Where(e => e.MinistryActions.Contains(MinistryAction.Gospel)).Count().ToString();
 
             ViewData["RedCount"] = query.Where(e => e.MinistryResponse == MinistryResponse.RedLight).Count().ToString();
-            ViewData["YellowCount"] = query.Where(e => e.MinistryResponse == MinistryResponse.RedLight).Count().ToString();
-            ViewData["GreenCount"] = query.Where(e => e.MinistryResponse == MinistryResponse.RedLight).Count().ToString();
+            ViewData["YellowCount"] = query.Where(e => e.MinistryResponse == MinistryResponse.YellowLight).Count().ToString();
+            ViewData["GreenCount"] = query.Where(e => e.MinistryResponse == MinistryResponse.GreenLight).Count().ToString();
             ViewData["DoesNotWantTraining"] = query.Where(e => e.MinistryResponse == MinistryResponse.BelieverDoesNotWantTraining).Count().ToString();
             ViewData["WantsTraining"] = query.Where(e => e.MinistryResponse == MinistryResponse.BelieverWantsTraining).Count().ToString();
 
             // todo: refactor stuff here, add calls to the service to calculate totals, etc.
             //var encounters = await db.Encounters.ToAsyncEnumerable().ToList();
-            var encounters = db.GetEncounters().OrderByDescending(e => e.Timestamp).ToList();
+            var encounters = query.OrderByDescending(e => e.Timestamp).ToList();
 
             return View(encounters);
         }

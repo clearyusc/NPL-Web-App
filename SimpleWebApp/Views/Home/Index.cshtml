@@ -28,7 +28,7 @@
         /*min-height: 0px;*/
     }
 </style>
-<form asp-controller="Home" asp-action="SaveEncounter">
+<form id="encounterForm" asp-controller="Home" asp-action="SaveEncounter">
     <br />
     <br />
     <div class="flex-container-actions">
@@ -89,14 +89,18 @@
     </div>
     <br />
     <div class="flex-container">
-        @*<label class="btn-lg btn-negative" onclick="resetAllDataFields">Reset</label>*@ <!-- Todo: add reset button somehwere -->
-        <button class="btn-lg btn-success btn-block" type="submit">Save</button>
+        @*<label class="btn-lg btn-outlined btn-negative" onclick="resetAllDataFields()">Reset</label>*@ <!-- Todo: add reset button somehwere -->
+        <button class="btn-lg btn-success" type="submit" onclick="resetAllDataFields()">Save</button>
     </div>
 </form>
 
 
 
 <script>
+
+    function resetAllDataFields() {
+        document.getElementById("encounterForm").reset(); // only resets the textfields
+    }
 
     function getButtonValue(elem) {
         if (elem.classList.contains('active')) {

@@ -40,22 +40,34 @@
 
     <h2>Encounters List</h2>
     <hr />
-    @foreach (var encounter in Model)
-    {
-        // Todo: Move this into the Controller? or a viewmodel?
-        string actionString = "";
-        foreach (var action in encounter.MinistryActions)
+    <ul class="table-view">
+        @foreach (var encounter in Model)
         {
-            actionString += " " + (action.ToString());
-        }
+            // todo: move this into a viewmodel
+            var textColor = "black";
+            switch (encounter.MinistryResponse)
+            {
+                case MinistryResponse.RedLight:
+                    textColor = "red";
+                    break;
+                case MinistryResponse.YellowLight:
+                    textColor = "yellow";
+                    break;
+                case MinistryResponse.GreenLight:
+                    textColor = "green";
+                    break;
+                default:
+                    break;
+            }
 
-        <h4>@encounter.PersonEncountered.FirstName</h4>
-        <ul>
-            <li>@actionString</li>
-            <li>@encounter.MinistryResponse</li>
-            <li>@encounter.Notes</li>
-            <li>@encounter.Timestamp</li>
-        </ul>
-    }
+            <li class="table-view-cell" style="color:@textColor">
+                <h5>@encounter.PersonEncountered.FirstName</h5>
+                @*<a class="navigate-right" href="@Html.Partial("_EncounterDetail", encounter)" data-transition="slide-in">
+
+                *@
+            </li>
+        }
+    </ul>
+
 
 </div>
