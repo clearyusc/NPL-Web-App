@@ -58,15 +58,15 @@ namespace SimpleWebApp.Controllers
             }
 
             var encounter = new Encounter();
-            if (viewModel != null)
-            {
-                if (viewModel.Gospel)
-                    encounter.Actions.Add(new MinistryAction(3));
-                if (viewModel.Prayer)
-                    encounter.Actions.Add(new MinistryAction(2));
-                if (viewModel.Testimony)
-                    encounter.Actions.Add(new MinistryAction(1));
-            }
+            //if (viewModel != null)
+            //{
+            //    if (viewModel.Gospel)
+            //        encounter.MinistryActions.Add(new MinistryAction(3));
+            //    if (viewModel.Prayer)
+            //        encounter.MinistryActions.Add(new MinistryAction(2));
+            //    if (viewModel.Testimony)
+            //        encounter.MinistryActions.Add(new MinistryAction(1));
+            //}
 
             encounter.Response = viewModel.Response;
             encounter.Person.FirstName = viewModel.NameOfPerson;
@@ -74,14 +74,12 @@ namespace SimpleWebApp.Controllers
             encounter.Timestamp = DateTime.Now;
 
             await db.Encounters.AddAsync(encounter);
-            encounter.Actions.ForEach(a => db.MinistryActions.AddAsync(a));
+            //encounter.MinistryActions.ForEach(ma => db.MinistryActions.AddAsync(ma));
 
             //await db.AddAsync(encounter);
             await db.SaveChangesAsync();
 
             //dashboard.Encounters.Add(encounter);
-
-            ViewData["NumberOfEncounters"] = encounter.Actions.Count;
 
             return View("Index");
         }

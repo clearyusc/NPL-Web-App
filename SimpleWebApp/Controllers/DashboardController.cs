@@ -26,7 +26,8 @@ namespace SimpleWebApp.Controllers
             var encounters = await db.Encounters.ToAsyncEnumerable().ToList();
             dashboard.Encounters = encounters;
 
-            return View(dashboard);
+            //return View(dashboard);
+            return View(encounters[0]);
         }
     }
 }

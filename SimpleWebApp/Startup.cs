@@ -36,15 +36,15 @@ namespace SimpleWebApp
         {
             // Add framework services.
             services.AddMvc();
+            //options => options.UseSqlServer(Configuration.GetConnectionString("DefaultDevelopmentConnection")));
+            services.AddDbContext<DefaultContext>(options => 
+                options.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = SimpleWebApp; Trusted_Connection = True; MultipleActiveResultSets=true "));
 
-            //todo: uncomment the service injection below:
-            //services.AddDbContext<DefaultContext>(
-            //    options => options.UseSqlServer(_config.GetConnectionString("DefaultDevelopmentConnection")));
-            services.AddDbContext<DefaultContext>(ops => ops.UseInMemoryDatabase("UserData"));
+            //services.AddDbContext<DefaultContext>(ops => ops.UseInMemoryDatabase("UserData"));
 
             //services.AddScoped<IUserData, SqlUserData>();
-            
-            
+
+
             // Use SQL Database if in Azure, otherwise, use SQLLite
             //if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
             //if (true)

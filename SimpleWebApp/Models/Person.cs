@@ -15,7 +15,9 @@ namespace SimpleWebApp.Models
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Address Address { get; set; }
-        public MinistryResponse Response { get; set; }
+        //public Address Address { get; set; }
+        //public MinistryResponse Response { get; set; }
+        public int EncounterId { get; set; }
+        public Encounter Encounter { get; internal set; }
     }
 }

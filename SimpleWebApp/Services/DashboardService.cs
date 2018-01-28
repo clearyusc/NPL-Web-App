@@ -38,8 +38,8 @@ namespace SimpleWebApp.Services
             int count = 0;
             foreach (var encounter in encounters)
             {
-                if (encounter.Response == type)
-                    count++;
+                //if (encounter.Response == type)
+                //    count++;
             }
             return count;
         }

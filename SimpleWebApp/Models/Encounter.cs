@@ -25,7 +25,7 @@ namespace SimpleWebApp.Models
     public interface IEncounter
     {
         Person Person { get; set; }
-        List<MinistryAction> Actions { get; set; }
+        List<MinistryAction> MinistryActions { get; set; }
         MinistryResponse Response { get; set; }
         string Notes { get; set; }
         DateTime Timestamp { get; set; }
@@ -34,26 +34,27 @@ namespace SimpleWebApp.Models
         //void AddMinistryAction(MinistryAction action);
     }
 
-    public class Encounter : IEncounter
+    public class Encounter 
     {
         public Person Person { get; set; }
         public MinistryResponse Response { get; set; } = MinistryResponse.Undefined;
         public string Notes { get; set; }
         public DateTime Timestamp { get; set; }
-        public Guid Id { get; set; }
+        //public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        public virtual List<MinistryAction> Actions { get; set; }
+        //public List<MinistryAction> MinistryActions { get; set; }
 
         public Encounter()
         {
-            Actions = new List<MinistryAction>();
+            //MinistryActions = new List<MinistryAction>();
             Person = new Person();
-            Id = (Id == null) ? Guid.NewGuid() : Id;
+            //Id = (Id == null) ? Guid.NewGuid() : Id;
         }
 
         public void AddMinistryAction(int action)
         {
-            Actions.Add(new MinistryAction(action));
+            //MinistryActions.Add(new MinistryAction(action));
         }
     }
 }

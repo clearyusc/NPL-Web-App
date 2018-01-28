@@ -17,7 +17,7 @@ namespace SimpleWebApp.Models
         void DeleteEncounter(Guid id);
     }
 
-    public class UserData : IUserData
+    public class UserData
     {
         public Guid Id { get; set; }
         public IList<Encounter> Encounters { get; set;  }
@@ -44,11 +44,6 @@ namespace SimpleWebApp.Models
         public void AddEncounter(IEncounter encounter)
         {
             ((List<IEncounter>)Encounters).Add(encounter);
-        }
-
-        public IEncounter GetEncounter(Guid id)
-        {
-            return Encounters.First(e => e.Id == id);
         }
 
         public void DeleteEncounter(Guid id)

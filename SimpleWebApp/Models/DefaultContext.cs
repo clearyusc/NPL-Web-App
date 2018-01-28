@@ -11,12 +11,18 @@ namespace SimpleWebApp.Context
 
         }
 
-        public DbSet<UserData> Users { get; set; }
+        //public DbSet<UserData> Users { get; set; }
         public DbSet<Encounter> Encounters { get; set; }
-        public DbSet<Person> Person { get; set; }
-        public DbSet<MinistryAction> MinistryActions { get; set; }
-
-
+        public DbSet<Person> Persons { get; set; }
+        //public DbSet<MinistryAction> MinistryActions { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Encounter>()
+                .HasOne(e => e.Person)
+                .WithOne(p => p.Encounter)
+                .HasForeignKey<Person>(p => p.EncounterId);
+        }
+        
         //public DbSet<MinistryAction> MinistryActions { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
