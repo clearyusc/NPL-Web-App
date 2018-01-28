@@ -1,5 +1,5 @@
-﻿@using SimpleWebApp.Models;
-@model Encounter
+﻿@using SimpleWebApp.Repository;
+@model List<Encounter>
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -8,40 +8,54 @@
     .badge-prayer {
         background-color: #e6e6e6 !important;
     }
+
     .badge-testimony {
         background-color: #269abc !important;
     }
+
     .badge-gospel {
         background-color: #204d74 !important;
     }
+
     .badge-red-lights {
         background-color: #d9534f !important;
     }
+
     .badge-yellow-lights {
         background-color: #f0ad4e !important;
     }
+
     .badge-green-lights {
         background-color: #5cb85c !important;
     }
 </style>
 <div class="content-padded">
     <h1>Dashboard Summary</h1>
-    <span class="badge badge-prayer">40</span>
-    <span class="badge badge-testimony">34</span>
-    <span class="badge badge-gospel">17</span>
-    <span class="badge badge-red-lights">14</span>
-    <span class="badge badge-yellow-lights">2</span>
-    <span class="badge badge-green-lights">1</span>
+    <span class="badge badge-prayer">@ViewData["PrayCount"]</span>
+    <span class="badge badge-testimony">@ViewData["TestimonyCount"]</span>
+    <span class="badge badge-gospel">@ViewData["GospelCount"]</span>
+    <span class="badge badge-red-lights">@ViewData["RedCount"]</span>
+    <span class="badge badge-yellow-lights">@ViewData["YellowCount"]</span>
+    <span class="badge badge-green-lights">@ViewData["GreenCount"]</span>
 
-    <h1>Encounters List</h1>
-    <h3>@Model.Person.FirstName</h3>
-    <ul>
-        @*@foreach (var action in Model.Encounters[0].Actions)*@
-        @*<li>@Model.Encounters[0].Actions[0].Action</li>*@
-        <li>@Model.Response</li>
-        <li>@Model.Notes</li>
-        <li>@Model.Timestamp</li>
+    <h2>Encounters List</h2>
+    <hr />
+    @foreach (var encounter in Model)
+    {
+        // Todo: Move this into the Controller? or a viewmodel?
+        string actionString = "";
+        foreach (var action in encounter.MinistryActions)
+        {
+            actionString += " " + (action.ToString());
+        }
 
-    </ul>
+        <h4>@encounter.PersonEncountered.FirstName</h4>
+        <ul>
+            <li>@actionString</li>
+            <li>@encounter.MinistryResponse</li>
+            <li>@encounter.Notes</li>
+            <li>@encounter.Timestamp</li>
+        </ul>
+    }
 
 </div>

@@ -1,4 +1,4 @@
-﻿using SimpleWebApp.Services;
+﻿using SimpleWebApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +12,8 @@ namespace SimpleWebApp.Models
         IList<Encounter> Encounters { get; }
         Person User { get; set; }
 
-        void AddEncounter(IEncounter encounter);
-        IEncounter GetEncounter(Guid id);
+        //void AddEncounter(IEncounter encounter);
+        //IEncounter GetEncounter(Guid id);
         void DeleteEncounter(Guid id);
     }
 
@@ -41,10 +41,10 @@ namespace SimpleWebApp.Models
             }
         }
 
-        public void AddEncounter(IEncounter encounter)
-        {
-            ((List<IEncounter>)Encounters).Add(encounter);
-        }
+        //public void AddEncounter(IEncounter encounter)
+        //{
+        //    ((List<IEncounter>)Encounters).Add(encounter);
+        //}
 
         public void DeleteEncounter(Guid id)
         {

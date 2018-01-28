@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SimpleWebApp.Models;
-using SimpleWebApp.Services;
+using SimpleWebApp.Repository;
 
 namespace SimpleWebApp.Context
 {
@@ -18,7 +18,7 @@ namespace SimpleWebApp.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Encounter>()
-                .HasOne(e => e.Person)
+                .HasOne(e => e.PersonEncountered)
                 .WithOne(p => p.Encounter)
                 .HasForeignKey<Person>(p => p.EncounterId);
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleWebApp.Repository;
+using System;
 
 namespace SimpleWebApp.Models
 {

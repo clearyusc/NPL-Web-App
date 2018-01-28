@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SimpleWebApp.Context;
 using SimpleWebApp.Models;
-using SimpleWebApp.Services;
 
 namespace SimpleWebApp
 {
@@ -40,26 +39,23 @@ namespace SimpleWebApp
             services.AddDbContext<DefaultContext>(options => 
                 options.UseSqlServer("Server = (localdb)\\mssqllocaldb; Database = SimpleWebApp; Trusted_Connection = True; MultipleActiveResultSets=true "));
 
+            //var client = new MongoClient();
+
             //services.AddDbContext<DefaultContext>(ops => ops.UseInMemoryDatabase("UserData"));
 
             //services.AddScoped<IUserData, SqlUserData>();
 
 
-            // Use SQL Database if in Azure, otherwise, use SQLLite
-            //if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production")
-            //if (true)
-            //    services.AddDbContext<DotNetCoreSqlDbContext>(options =>
-            //            options.UseSqlServer(Configuration.GetConnectionString("DefaultProductionConnection")));
-            //else
-            //    services.AddDbContext<DotNetCoreSqlDbContext>(options =>
-            //            options.UseSqlite("Data Source=MvcMovie.db"));
-
-            //// Automatically perform database migration
-            //services.BuildServiceProvider().GetService<DotNetCoreSqlDbContext>().Database.Migrate();
-
-            //services.AddDbContext<DefaultContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+           
         }
+
+        //private async ConnectToMongoDB()
+        //{
+        //    var connectionString = "mongodb://localhost:27017";
+
+        //    var client = new MongoClient(connectionString);
+
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
