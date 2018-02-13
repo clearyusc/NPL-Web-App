@@ -31,24 +31,36 @@
 <form id="encounterForm" asp-controller="Home" asp-action="SaveEncounter">
     <br />
     <br />
-    <div class="flex-container-actions">
-
-        <div class="checkbox">
-            <input asp-for="Prayer">
-            <label onclick="ministryActionClicked(this)" id="prayerButton" class="ministry-action-btn btn btn-default"
-                   for="prayerButton">Prayer</label>
-        </div>
-        <div class="checkbox">
-            <input asp-for="Testimony">
-            <label onclick="ministryActionClicked(this)" id="testimonyButton" class="ministry-action-btn btn btn-default"
-                   for="testimonyButton">Testimony</label>
-        </div>
-        <div class="checkbox">
-            <input asp-for="Gospel">
-            <label onclick="ministryActionClicked(this)" id="gospelButton" class="ministry-action-btn btn btn-default"
-                   for="gospelButton">Gospel</label>
-        </div>
+    <div class="btn-group flex-container-actions" data-toggle="buttons">
+        <label id="prayerButton" class="btn btn-default"
+               for="prayerButton">
+            <input type="checkbox" asp-for="Prayer">Prayer
+        </label>
+        <label id="testimonyButton" class="btn btn-default"
+               for="testimonyButton">
+            <input type="checkbox" asp-for="Testimony">Testimony
+        </label>
+        <label id="gospelButton" class="btn btn-default"
+               for="gospelButton">
+            <input type="checkbox" asp-for="Gospel">Gospel
+        </label>
     </div>
+
+    @*<div class="checkbox">
+        <input asp-for="Prayer">
+        <label onclick="ministryActionClicked(this)" id="prayerButton" class="ministry-action-btn btn btn-default"
+               for="prayerButton">Prayer</label>
+    </div>
+    <div class="checkbox">
+        <input asp-for="Testimony">
+        <label onclick="ministryActionClicked(this)" id="testimonyButton" class="ministry-action-btn btn btn-default"
+               for="testimonyButton">Testimony</label>
+    </div>
+    <div class="checkbox">
+        <input asp-for="Gospel">
+        <label onclick="ministryActionClicked(this)" id="gospelButton" class="ministry-action-btn btn btn-default"
+               for="gospelButton">Gospel</label>
+    </div>*@
 
 
     <br />

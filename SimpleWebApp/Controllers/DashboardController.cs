@@ -40,5 +40,10 @@ namespace SimpleWebApp.Controllers
 
             return View(encounters);
         }
+
+        public IActionResult ShowEncounterDetail(Encounter encounter)
+        {
+            return View("_EncounterDetail", encounter);
+        }
     }
 }

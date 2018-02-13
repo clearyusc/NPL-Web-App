@@ -5,6 +5,12 @@
 }
 
 <style>
+    .flex-container-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+    }
     .badge-prayer {
         background-color: #e6e6e6 !important;
     }
@@ -48,24 +54,26 @@
             switch (encounter.MinistryResponse)
             {
                 case MinistryResponse.RedLight:
-                    textColor = "red";
+                    textColor = "#d9534f";
                     break;
                 case MinistryResponse.YellowLight:
-                    textColor = "yellow";
+                    textColor = "#f0ad4e";
                     break;
                 case MinistryResponse.GreenLight:
-                    textColor = "green";
+                    textColor = "#5cb85c";
                     break;
                 default:
+                    textColor = "white";
                     break;
             }
 
-            <li class="table-view-cell" style="color:@textColor">
-                <h5>@encounter.PersonEncountered.FirstName</h5>
-                @*<a class="navigate-right" href="@Html.Partial("_EncounterDetail", encounter)" data-transition="slide-in">
-
-                *@
-            </li>
+        <li class="table-view-cell" style="background-color:@textColor">
+            <a class="navigate-right" href="@Url.Action("ShowEncounterDetail", "Dashboard", Model)" data-transition="slide-in">
+                <div class="flex-container-row">
+                    <h5>@encounter.PersonEncountered.FirstName</h5>
+                </div>
+            </a>
+        </li>
         }
     </ul>
 

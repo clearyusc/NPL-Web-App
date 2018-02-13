@@ -1,5 +1,12 @@
 ﻿@using SimpleWebApp.Repository;
 @model Encounter
+<form>
+<button class="btn btn-default" asp-controller="Dashboard" asp-action="Index">Back</button>
+
+@*<header class="bar bar-nav">
+        <a class="icon icon-left-nav pull-left"></a>
+        <h1 class="title">@Model.PersonEncountered.FirstName</h1>
+    </header>*@
 
 @{ // Todo: Move this into the Controller? or a viewmodel?
     string actionString = "";
@@ -15,3 +22,32 @@
     <li>@Model.Notes</li>
     <li>@Model.Timestamp</li>
 </ul>
+
+@*<button class="btn btn-outlined btn-info" onclick="../Dashboard/Index">Back</button>*@
+    </form>
+<script>
+
+    function addBackButton() {
+        var header = document.getElementById('header');
+        var backButtonNotYetAdded = header.children.length <= 1;
+        if (backButtonNotYetAdded) {
+            var navBackButton = document.createElement('a');
+            navBackButton.classList.add('icon');
+            navBackButton.classList.add('icon-left-nav');
+            navBackButton.classList.add('pull-left');
+            navBackButton.href = "../Dashboard/Index";
+            //navBackButton['data-transition'] = "slide-out";
+
+            header.appendChild(navBackButton);
+        }
+    }
+
+    document.onreadystatechange = () => {
+        if (document.readyState === 'complete') {
+            addBackButton();
+        }
+    };
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+    });
+</script>
